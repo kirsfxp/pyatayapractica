@@ -1,0 +1,287 @@
+:root {
+  --mint:   #cdeee0;
+  --sky:    #d2e8f7;
+  --rose:   #f7d6e0;
+  --cream:  #fdf6ec;
+  --ink:    #5b5470;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--mint), var(--sky));
+  font-family: "Comic Sans MS", "Segoe UI", system-ui, sans-serif;
+  color: var(--ink);
+}
+
+/* --- Главное меню --- */
+.menu-screen {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--mint), var(--sky));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.menu-content {
+  background: var(--cream);
+  padding: 40px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-content h1 { margin: 0; font-size: 28px; }
+.menu-content p { margin: 0; font-size: 16px; color: #777; }
+.btn-large { font-size: 22px; padding: 15px 30px; margin-top: 10px; }
+.btn-small { font-size: 14px; padding: 8px 12px; }
+
+/* --- Кнопка настроек --- */
+.settings-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  background: var(--cream);
+  border: 2px solid #ded4f2;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(91,84,112,0.2);
+  transition: transform 0.2s;
+}
+.settings-icon:hover { transform: rotate(45deg); }
+
+/* --- Меню настроек --- */
+.settings-modal {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(91, 84, 112, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  backdrop-filter: blur(4px);
+}
+.settings-modal.hidden { display: none; }
+
+.settings-content {
+  background: var(--cream);
+  padding: 30px;
+  border-radius: 24px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.settings-content h3 { margin: 0 0 10px 0; text-align: center; }
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.setting-item input[type="range"] {
+  flex: 1;
+  accent-color: var(--rose);
+}
+
+.btn-danger { background: #ffb3b3; border-color: #ff9999; }
+.btn-danger:hover { background: #ff9999; }
+.btn-close { background: #ded4f2; border-color: #ccc3e0; }
+
+.w-full { width: 100%; display: block; }
+
+/* --- Игровой интерфейс --- */
+.game-wrap {
+  width: min(96vw, 1000px);
+  padding: 16px;
+  text-align: center;
+}
+
+.game-title {
+  margin: 0 0 12px;
+  font-size: clamp(18px, 2.6vw, 28px);
+  font-weight: 700;
+}
+
+.ui-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.controls-panel {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  background: var(--rose);
+  border: 2px solid #ded4f2;
+  color: var(--ink);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+}
+
+.btn:hover { background: #f2c6d4; }
+.btn:active { transform: scale(0.95); }
+
+.canvas-box {
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 10px;
+  box-shadow: 0 12px 30px rgba(91, 84, 112, 0.18);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  background: var(--cream);
+}
+
+.touch-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 40px;
+}
+
+.touch-group {
+  display: flex;
+  gap: 15px;
+}
+
+.touch-btn {
+  width: 65px;
+  height: 65px;
+  background: rgba(247, 214, 224, 0.6);
+  border: 2px solid rgba(222, 212, 242, 0.8);
+  border-radius: 50%;
+  font-size: 24px;
+  color: var(--ink);
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(91,84,112,0.1);
+  transition: background 0.1s, transform 0.1s;
+}
+
+.touch-btn:active {
+  background: rgba(247, 214, 224, 1);
+  transform: scale(0.95);
+}
+
+.jump-btn {
+  width: 100px;
+  height: 65px;
+  border-radius: 32px;
+  font-size: 16px;
+}
+
+.hint {
+  margin: 12px 0 0;
+  font-size: clamp(13px, 1.6vw, 15px);
+  opacity: 0.85;
+}
+.hint b { color: #a3749a; }
+
+.win-screen {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(91, 84, 112, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+
+.win-screen.hidden { display: none; }
+
+.win-content {
+  background: var(--cream);
+  padding: 30px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.win-content h2 {
+  color: var(--ink);
+  margin: 0;
+  font-size: clamp(20px, 3vw, 32px);
+}
+
+.win-time {
+  font-size: 20px;
+  color: #a3749a;
+  margin: 0;
+}
+
+.win-image {
+  max-width: 100%;
+  max-height: 50vh;
+  border-radius: 16px;
+  border: 4px solid var(--rose);
+  display: block;
+}
+
+.no-gift-text {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+.win-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.hidden { display: none !important; }
+

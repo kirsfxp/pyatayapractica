@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Муми-тролль: Подарки для Фрекен Снорк</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Главное меню -->
+  <div id="main-menu" class="menu-screen">
+    <div class="menu-content">
+      <h1>Муми-тролль: Подарки для Фрекен Снорк</h1>
+      <p>Помоги Муми-троллю собрать подарки и добраться до Фрекен Снорк!</p>
+      <button id="start-game-btn" class="btn btn-large">Играть</button>
+    </div>
+  </div>
+
+  <!-- Кнопка настроек (шестеренка) -->
+  <button id="settings-btn" class="settings-icon" title="Настройки">⚙️</button>
+
+  <!-- Меню настроек -->
+  <div id="settings-modal" class="settings-modal hidden">
+    <div class="settings-content">
+      <h3>Настройки</h3>
+      
+      <div class="setting-item">
+        <label>Громкость:</label>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+      </div>
+
+      <div class="setting-item">
+        <label>Музыка:</label>
+        <button id="toggle-music-btn" class="btn btn-small">Вкл</button>
+      </div>
+
+      <div class="setting-item" style="justify-content: center; margin-top: 10px;">
+        <button id="reset-record-btn" class="btn btn-danger w-full">Сбросить рекорд</button>
+      </div>
+
+      <button id="close-settings-btn" class="btn btn-close w-full">Закрыть</button>
+    </div>
+  </div>
+
+  <main class="game-wrap">
+    <h1 class="game-title">Муми-тролль: Подарки для Фрекен Снорк</h1>
+
+    <div class="ui-panel">
+      <div class="level">Уровень: <span id="level">1</span></div>
+      <div class="score">Подарки: <span id="score">0</span> / <span id="total-items">1</span></div>
+      <div class="time">Время: <span id="time">0.0</span> с</div>
+      <div class="best">Рекорд: <span id="best-time">--</span> с</div>
+      <div class="controls-panel">
+        <button id="level1-btn" class="btn btn-small">Уровень 1</button>
+        <button id="pause-btn" class="btn btn-small">Пауза</button>
+        <button id="restart-btn" class="btn">Заново</button>
+      </div>
+    </div>
+
+    <div class="canvas-box">
+      <canvas id="game" width="960" height="540"></canvas>
+    </div>
+
+    <!-- Экранные кнопки для телефона -->
+    <div class="touch-controls">
+      <div class="touch-group">
+        <button id="btn-left" class="touch-btn">◀</button>
+        <button id="btn-right" class="touch-btn">▶</button>
+      </div>
+      <button id="btn-jump" class="touch-btn jump-btn">Прыжок</button>
+    </div>
+
+    <p class="hint">
+      Управление: <b>← →</b> или <b>A / D</b> — движение,
+      <b>Space</b> или <b>W</b> — прыжок
+    </p>
+  </main>
+
+  <!-- Финальный экран (победа) -->
+  <div id="win-screen" class="win-screen hidden">
+    <div class="win-content">
+      <h2 id="win-title">Вы принесли Фрекен Снорк подарочек!</h2>
+      <p id="win-time" class="win-time"></p>
+      
+      <img id="hug-img" src="assets/hug.png" alt="Обнимаются" class="win-image">
+      <img id="together-img" src="assets/together.png" alt="Идут вместе" class="win-image hidden">
+      
+      <div id="no-gift-text" class="no-gift-text hidden">
+        <p>Вы пришли к Фрекен Снорк, но без подарочка...</p>
+        <p>Она немного расстроилась, но всё равно рада вас видеть!</p>
+      </div>
+
+      <!-- Текст для второго уровня, если собраны не все сердечки -->
+      <div id="good-time-text" class="no-gift-text hidden">
+        <p>Вы прошли все уровни и отлично провели время с Фрекен Снорк!</p>
+      </div>
+
+      <div class="win-buttons">
+        <button id="next-level-btn" class="btn hidden">Дальше</button>
+        <button id="win-restart-btn" class="btn">Играть снова</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Аудио -->
+  <audio id="music1" loop>
+    <source src="assets/music1.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="music2" loop>
+    <source src="assets/music2.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="jump-sound">
+    <source src="assets/jump.mp3" type="audio/mpeg">
+  </audio>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
